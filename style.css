@@ -1,0 +1,199 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* Wrapper of web page */
+
+#wrapper{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+/* leftBar starts From here */
+
+#leftBar{
+    width: 20%;
+    padding: 2%;
+    background: #080808;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+#logo{
+    width: 6.14781rem;
+    height: 1rem;
+    flex-shrink: 0;
+    margin-left: 15px;
+}
+
+#options{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    color: #EAEAEA;
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.25rem;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+input{
+    border: 0;
+    outline: 0;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid #1F1F1F;
+    background: #000;
+    color: #5C5C5C;
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;
+    height: 2rem;
+    padding: 1rem;
+}
+
+#list1{
+    width: 100%;
+}
+
+#Home, #Library, #Friends{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 0.8rem;
+    padding: 1rem;
+    height: 2.5rem;
+    width: 100%;
+}
+
+#Home:hover, #Library:hover, #Friends:hover{
+    cursor: pointer;
+    border-radius: 0.5rem;
+    background: #1F1F1F;
+
+}
+
+#options svg{
+    fill: #EAEAEA;
+}
+
+
+hr{
+    width: 90%;
+}
+
+#list2Heading{
+    color: #9A9A9A;
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem; /* 153.846% */
+    letter-spacing: 0.08125rem;
+    text-transform: uppercase;
+}
+#list2{
+    width: 100%;
+}
+#Action,#Detectives,#Fantasy,#Space,#Blockbasters,#Shitty,#top100{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 0.8rem;
+    padding: 1rem;
+    height: 2.5rem;
+    width: 100%;
+}
+
+#Action:hover,#Detectives:hover,#Fantasy:hover,#Space:hover,#Blockbasters:hover,#Shitty:hover,#top100:hover{
+    cursor: pointer;
+    border-radius: 0.5rem;
+    background: #1F1F1F;
+}
+
+#createBtn{
+    width: 100%;
+    display: flex;
+    padding: 0.625rem 1.25rem 0.625rem 0.75rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 0.5rem;
+    background: #F33F3F;
+    border: 0;
+    outline: 0;
+    color: #080808;
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.25rem; 
+}
+
+#createBtn svg{
+    fill: #080808;;
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.25rem; 
+}
+
+#createBtn:hover{
+    cursor: pointer;
+    background: #fd4343;
+}
+
+#profile{
+    margin-top: 14rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#profileImage{
+    cursor: pointer;
+}
+
+#profileInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    margin-left: 0.5rem;
+    cursor: pointer;
+}
+
+#profileInfo h5{
+    color: #EAEAEA;
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1rem;
+}
+
+#profileInfo p{
+    color: #EAEAEA;
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1rem; 
+}
+
+#svgImg svg{
+    fill: #EAEAEA;
+    margin-left: 3.6rem;
+    cursor: pointer;
+}
+
+
+/* Main Section Starts From Here */

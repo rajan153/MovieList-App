@@ -66,6 +66,11 @@ input {
     width: 100%;
 }
 
+#list1 a{
+    text-decoration: none;
+    color: #EAEAEA;
+}
+
 #Home,
 #Library,
 #Friends {
@@ -109,6 +114,11 @@ hr {
 
 #list2 {
     width: 100%;
+}
+
+#list2 a{
+    text-decoration: none;
+    color: #EAEAEA;
 }
 
 #Action,
@@ -178,7 +188,6 @@ hr {
 
 #createBtn svg {
     fill: #080808;
-    ;
     font-size: 0.9375rem;
     font-style: normal;
     font-weight: 700;
@@ -192,7 +201,6 @@ hr {
 
 #profile {
     position: relative;
-    /* margin-top: 14rem; */
     width: 100%;
     display: flex;
     align-items: center;

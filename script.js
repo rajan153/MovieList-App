@@ -2,12 +2,20 @@
 
 const movieNight = document.getElementById("movieNight");
 const recentVideos = document.getElementById("recentVideos");
+const Action = document.getElementById("Action");
+const Detectives = document.getElementById("Detectives");
+const Fantasy = document.getElementById("Fantasy");
+const Space = document.getElementById("Space");
+const Blockbasters = document.getElementById("Blockbasters");
+const Shitty = document.getElementById("Shitty");
+const top100 = document.getElementById("top100");
+const menuBarIcon = document.getElementById("menuBarIcon");
 
 // Assign the variable
 
 const API_KEY = `api_key=4d95d99dd0ba577ee90bf446c8971b3a`;
 const BASE_URL = `https://api.themoviedb.org/3/`;
-const API_URL = `${BASE_URL}/discover/movie?sory_by=popularity.desc&${API_KEY}`;
+const API_URL = `${BASE_URL}discover/movie?sory_by=popularity.desc&${API_KEY}`;
 const IMG_URL = `https://image.tmdb.org/t/p/w500/`;
 const PATH_URL = `gq5Wi7i4SF3lo4HHkJasDV95xI9.jpg`;
 
@@ -19,6 +27,7 @@ function getMovies(url) {
     .then((data) => {
       showMovies(data.results);
       recentMovie(data.results);
+      geetingIds(data.results);
     }, false);
 }
 
@@ -160,6 +169,30 @@ function showMovies(data) {
   }, false);
 }
 
+const storageOfIDs = [];
+
+// For Getting IDs
+function geetingIds(data) {
+  data.forEach((iDs) => {
+    const { id } = iDs;
+    const collectingIds = `${id}`;
+    storageOfIDs.push(collectingIds);
+  })
+}
 
 
 
+
+
+
+// MenuBar On/Off Button
+menuBarIcon.addEventListener("click", () => {
+  if(leftBar.style.display === "block")
+  {
+    leftBar.style.display = "none";
+  }
+  else
+  {
+    leftBar.style.display = "block";
+  }
+},false);

@@ -2,6 +2,8 @@
 
 const movieNight = document.getElementById("movieNight");
 const recentVideos = document.getElementById("recentVideos");
+const form = document.querySelector("form");
+const searchBar = document.getElementById("searchBar");
 const Action = document.getElementById("Action");
 const Detectives = document.getElementById("Detectives");
 const Fantasy = document.getElementById("Fantasy");
@@ -11,6 +13,16 @@ const Shitty = document.getElementById("Shitty");
 const top100 = document.getElementById("top100");
 const menuBarIcon = document.getElementById("menuBarIcon");
 const list2 = document.getElementById("list2");
+const createBtn = document.getElementById("createBtn");
+const createBtnModal = document.getElementById("createBtnModal");
+const modalBar = document.getElementById("modalBar");
+const eventCreation = document.getElementById("eventCreation");
+const createEventModal = document.getElementById("createEventModal");
+const eventBar = document.getElementById("eventBar");
+const eventBtn = document.getElementById("eventBtn");
+const second = document.getElementById("second");
+
+
 
 // Assign the variable
 
@@ -19,6 +31,7 @@ const BASE_URL = `https://api.themoviedb.org/3/`;
 const API_URL = `${BASE_URL}discover/movie?sory_by=popularity.desc&${API_KEY}`;
 const IMG_URL = `https://image.tmdb.org/t/p/w500/`;
 const PATH_URL = `gq5Wi7i4SF3lo4HHkJasDV95xI9.jpg`;
+const searchURL = `${BASE_URL}/search/movie?${API_URL}`;
 
 // Fetching the Data
 
@@ -28,87 +41,101 @@ function getMovies(url) {
     .then((data) => {
       showMovies(data.results);
       recentMovie(data.results);
-      geetingIds(data.results);
+    }, false);
+}
+
+// For Genre
+function getMovies1(url) {
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      movieNight.innerHTML = "";
+      if (data.results.length != 0) {
+        showMovies(data.results);
+      } else {
+        const message =
+          (movieNight.innerHTML = `<h1 id = "message">No Results Found</h1>`);
+      }
     }, false);
 }
 
 const genre = [
   {
-    "id": 28,
-    "name": "Action"
+    id: 28,
+    name: "Action",
   },
   {
-    "id": 12,
-    "name": "Adventure"
+    id: 12,
+    name: "Adventure",
   },
   {
-    "id": 16,
-    "name": "Animation"
+    id: 16,
+    name: "Animation",
   },
   {
-    "id": 35,
-    "name": "Comedy"
+    id: 35,
+    name: "Comedy",
   },
   {
-    "id": 80,
-    "name": "Crime"
+    id: 80,
+    name: "Crime",
   },
   {
-    "id": 99,
-    "name": "Documentary"
+    id: 99,
+    name: "Documentary",
   },
   {
-    "id": 18,
-    "name": "Drama"
+    id: 18,
+    name: "Drama",
   },
   {
-    "id": 10751,
-    "name": "Family"
+    id: 10751,
+    name: "Family",
   },
   {
-    "id": 14,
-    "name": "Fantasy"
+    id: 14,
+    name: "Fantasy",
   },
   {
-    "id": 36,
-    "name": "History"
+    id: 36,
+    name: "History",
   },
   {
-    "id": 27,
-    "name": "Horror"
+    id: 27,
+    name: "Horror",
   },
   {
-    "id": 10402,
-    "name": "Music"
+    id: 10402,
+    name: "Music",
   },
   {
-    "id": 9648,
-    "name": "Mystery"
+    id: 9648,
+    name: "Mystery",
   },
   {
-    "id": 10749,
-    "name": "Romance"
+    id: 10749,
+    name: "Romance",
   },
   {
-    "id": 878,
-    "name": "Science Fiction"
+    id: 878,
+    name: "Science Fiction",
   },
   {
-    "id": 10770,
-    "name": "TV Movie"
+    id: 10770,
+    name: "TV Movie",
   },
   {
-    "id": 53,
-    "name": "Thriller"
+    id: 53,
+    name: "Thriller",
   },
   {
-    "id": 10752,
-    "name": "War"
+    id: 10752,
+    name: "War",
   },
   {
-    "id": 37,
-    "name": "Western"
-  }
+    id: 37,
+    name: "Western",
+  },
 ];
 
 let selectedGenre = [];
@@ -134,11 +161,26 @@ function setGenre() {
       } else {
         selectedGenre.push(genres.id);
       }
-      console.log(selectedGenre);
-      getMovies(API_URL + "&with_genres=" + encodeURI(selectedGenre.join(",")))
+      getMovies1(
+        API_URL + "&with_genres=" + encodeURI(selectedGenre.join(","))
+      );
+      highlightedBars();
     });
     list2.append(t);
   }, false);
+}
+
+function highlightedBars() {
+  const tags = document.querySelectorAll(".tags");
+  tags.forEach((tag) => {
+    tag.classList.remove("highlight");
+  });
+  if (selectedGenre.length != 0) {
+    selectedGenre.forEach((id) => {
+      const highlightedTag = document.getElementById(id);
+      highlightedTag.classList.add("highlight");
+    }, false);
+  }
 }
 
 // Call the function
@@ -147,121 +189,112 @@ getMovies(API_URL);
 // Rcent Watched Moives
 
 function recentMovie(data) {
-
   data.forEach((movie) => {
-      const { title, poster_path, release_date } = movie;
+    const { title, poster_path, release_date } = movie;
 
-      // Creating Div
-      const movie1 = document.createElement("div");
+    // Creating Div
+    const movie1 = document.createElement("div");
 
-      // Creating Img tag to show the images
+    // Creating Img tag to show the images
 
-      const img = document.createElement("img");
+    const img = document.createElement("img");
 
-      // Source of images
+    // Source of images
 
-      img.src = `${IMG_URL + poster_path}`;
+    img.src = `${IMG_URL + poster_path}`;
 
-      // Some CSS apply on IMG tag
+    // Some CSS apply on IMG tag
 
-      img.style.display = "relative";
-      img.style.width = "100%";
-      img.style.cursor = "pointer";
+    img.style.display = "relative";
+    img.style.width = "100%";
+    img.style.cursor = "pointer";
 
-      // Creating h6 for title of the Movie
+    // Creating h6 for title of the Movie
 
-      const headingRecentMovies = document.createElement("h6");
+    const headingRecentMovies = document.createElement("h6");
 
-      // Getting the title of Movie
-      const titleHeading = `${title}`;
+    // Getting the title of Movie
+    const titleHeading = `${title}`;
 
-      // Css on h6
-      headingRecentMovies.style.color = "#EAEAEA";
-      headingRecentMovies.style.marginTop = "0.5rem";
+    // Css on h6
+    headingRecentMovies.style.color = "#EAEAEA";
+    headingRecentMovies.style.marginTop = "0.5rem";
 
-      // Creating h6 for Relase Date of the Movie
-      const paraOfRecentMovie = document.createElement("h6");
+    // Creating h6 for Relase Date of the Movie
+    const paraOfRecentMovie = document.createElement("h6");
 
-      // Apply Css on h6
-      paraOfRecentMovie.style.color = "#808080";
+    // Apply Css on h6
+    paraOfRecentMovie.style.color = "#808080";
 
-      // Getting the relase date of Movie
-      const releaseDate = `release Date: ${release_date}`;
+    // Getting the relase date of Movie
+    const releaseDate = `release Date: ${release_date}`;
 
-      // Append the all things
-      paraOfRecentMovie.append(releaseDate);
-      movie1.append(img);
-      headingRecentMovies.append(titleHeading);
-      movie1.append(headingRecentMovies);
-      movie1.append(paraOfRecentMovie);
-      recentVideos.append(movie1);
+    // Append the all things
+    paraOfRecentMovie.append(releaseDate);
+    movie1.append(img);
+    headingRecentMovies.append(titleHeading);
+    movie1.append(headingRecentMovies);
+    movie1.append(paraOfRecentMovie);
+    recentVideos.append(movie1);
   }, false);
 }
 
 // Movie Night Section
 
 function showMovies(data) {
-
   data.forEach((movie) => {
-      // Object to Use
+    // Object to Use
 
-      const { title, poster_path, release_date } = movie;
+    const { title, poster_path, release_date } = movie;
 
-      // Creating Div
+    // Creating Div
 
-      const movie1 = document.createElement("div");
+    const movie1 = document.createElement("div");
 
-      // Creating img tag
-      const img = document.createElement("img");
+    // Creating img tag
+    const img = document.createElement("img");
 
-      // Source of images
+    // Source of images
 
-      img.src = `${IMG_URL + poster_path}`;
+    img.src = `${
+      poster_path
+        ? IMG_URL + poster_path
+        : "https://via.placeholder.com/1080x1580"
+    }`;
 
-      //   Adding some Css
-      img.style.display = "relative";
-      img.style.width = "100%";
-      img.style.height = "100%";
-      img.style.cursor = "pointer";
+    //   Adding some Css
+    img.style.display = "relative";
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.cursor = "pointer";
 
-      //   Creating h6 tag for title
-      const headingRecentMovies = document.createElement("h6");
+    //   Creating h6 tag for title
+    const headingRecentMovies = document.createElement("h6");
 
-      // Getting the title of Movie
-      const titleHeading = `${title}`;
+    // Getting the title of Movie
+    const titleHeading = `${title}`;
 
-      // Adding Css
-      headingRecentMovies.style.color = "#EAEAEA";
-      headingRecentMovies.style.marginTop = "0.5rem";
+    // Adding Css
+    headingRecentMovies.style.color = "#EAEAEA";
+    headingRecentMovies.style.marginTop = "0.5rem";
 
-      //   Create h6 tag for release date
-      const paraOfMovieNight = document.createElement("h6");
+    //   Create h6 tag for release date
+    const paraOfMovieNight = document.createElement("h6");
 
-      //   Adding Css
-      paraOfMovieNight.style.color = "#808080";
+    //   Adding Css
+    paraOfMovieNight.style.color = "#808080";
 
-      //   Getting the relase date for Moives
-      const releaseDate = `release Date: ${release_date}`;
+    //   Getting the relase date for Moives
+    const releaseDate = `release Date: ${release_date}`;
 
-      //   Append the all things
-      headingRecentMovies.append(titleHeading);
-      paraOfMovieNight.append(releaseDate);
-      movie1.append(img);
-      movieNight.append(movie1);
-      movie1.append(headingRecentMovies);
-      movie1.append(paraOfMovieNight);
+    //   Append the all things
+    headingRecentMovies.append(titleHeading);
+    paraOfMovieNight.append(releaseDate);
+    movie1.append(img);
+    movieNight.append(movie1);
+    movie1.append(headingRecentMovies);
+    movie1.append(paraOfMovieNight);
   }, false);
-}
-
-const storageOfIDs = [];
-
-// For Getting IDs
-function geetingIds(data) {
-  data.forEach((iDs) => {
-    const { id } = iDs;
-    const collectingIds = `${id}`;
-    storageOfIDs.push(collectingIds);
-  });
 }
 
 // MenuBar On/Off Button
@@ -276,3 +309,73 @@ menuBarIcon.addEventListener(
   },
   false
 );
+
+// SearchBar for Searching the content
+form.addEventListener(
+  "submit",
+  (e) => {
+    e.preventDefault();
+    selectedGenre = [];
+    setGenre();
+    const searchIteams = searchBar.value;
+    if (searchIteams) {
+      getMovies1(`${searchURL}&query=${searchIteams}`);
+    } else {
+      getMovies1(API_URL);
+    }
+    searchBar.value = "";
+  },
+  false
+);
+
+// Create List for LeftBar
+
+createBtn.addEventListener(
+  "click",
+  () => {
+    if (createBtnModal.style.display === "none") {
+      createBtnModal.style.display = "block";
+    } else {
+      createBtnModal.style.display = "none";
+    }
+  },
+  false
+);
+
+createBtnModal.addEventListener(
+  "submit",
+  (e) => {
+    e.preventDefault();
+    const div = document.createElement("div");
+    div.classList.add("tags");
+    div.append(modalBar.value);
+    list2.append(div);
+    modalBar.value = "";
+  },
+  false
+);
+
+// Create Event for Main
+eventCreation.addEventListener(
+  "click",
+  () => {
+    if (createEventModal.style.display === "none") {
+      createEventModal.style.display = "block";
+    } else {
+      createEventModal.style.display = "none";
+    }
+  },
+  false
+);
+
+createEventModal.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const div = document.createElement("div");
+  div.classList.add("newEvent");
+  const headingForNewDiv = document.createElement("p");
+  headingForNewDiv.classList.add("headingOfNewEvent");
+  headingForNewDiv.append(eventBar.value);
+  div.append(headingForNewDiv);
+  second.append(div);
+  eventBar.value = "";
+},false);

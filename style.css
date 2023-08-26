@@ -29,6 +29,7 @@ body {
     height: 1rem;
     flex-shrink: 0;
     margin-left: 15px;
+    cursor: pointer;
 }
 
 #options {
@@ -65,7 +66,7 @@ input {
     width: 100%;
 }
 
-#list1 a{
+#list1 a {
     text-decoration: none;
     color: #EAEAEA;
 }
@@ -115,7 +116,7 @@ hr {
     width: 100%;
 }
 
-#list2 a{
+#list2 a {
     text-decoration: none;
     color: #EAEAEA;
 }
@@ -129,13 +130,13 @@ hr {
     padding: 1rem;
     height: 2.5rem;
     width: 100%;
-    
+
 }
 
 .tags:hover {
     cursor: pointer;
     border-radius: 0.5rem;
-    background: #1F1F1F;
+    background: #1f1f1f;
     position: relative;
     -webkit-animation: linear infinite;
     animation: linear infinite;
@@ -145,26 +146,30 @@ hr {
     animation-duration: 1s;
 }
 
-@keyframes run{
+@keyframes run {
     0% {
         left: 10%;
     }
-    50%{
+
+    50% {
         left: 5%;
     }
-    100%{
+
+    100% {
         left: 10%;
     }
 }
 
-@-webkit-keyframes run{
+@-webkit-keyframes run {
     0% {
         left: 10%;
     }
-    50%{
+
+    50% {
         left: 5%;
     }
-    100%{
+
+    100% {
         left: 10%;
     }
 }
@@ -242,7 +247,7 @@ hr {
 }
 
 #svgImg svg {
-    
+
     bottom: 1rem;
     position: absolute;
     fill: #EAEAEA;
@@ -273,12 +278,12 @@ main {
     text-transform: uppercase;
 }
 
-#one{
+#one {
     margin-bottom: 2rem;
 }
 
 #recentVideos {
-    padding: 1rem;
+    /* padding: 1rem; */
     margin-top: 2%;
     width: 100%;
     height: 100%;
@@ -287,7 +292,7 @@ main {
     overflow: scroll;
 }
 
-#recentVideos div{
+#recentVideos div {
     flex-shrink: 0;
     width: 8.8rem;
     height: 80%;
@@ -333,7 +338,6 @@ main {
 /* Third section starts from here */
 
 #movieNight {
-    /* border: solid; */
     margin-top: 2%;
     width: 100%;
     height: 100%;
@@ -341,30 +345,110 @@ main {
     gap: 1rem;
     overflow: scroll;
     margin-bottom: 2%;
-    /* flex-grow: 1; */
 }
 
-#movieNight div{
+#movieNight div {
     flex-shrink: 0;
     width: 19rem;
     height: 80%;
 }
 
+.highlight {
+    background-color: #1f1f1f;
+    border-radius: 0.5rem;
+}
+
+#message{
+    text-align: center;
+    color: #EAEAEA;
+}
 
 
-#menuBarIcon{
+/* Modal starts from here */
+#createBtnModal{
+    position: absolute;
+    margin: 10%;
+    padding: 1rem;
+    border: solid rgb(128, 120, 120);
+    width: 45%;
+    height: 25%;
+    background-color: #000000;
+    display: none;
+}
+
+#modalBtn{
+    width: 20%;
+    height: 1.8rem;
+    margin-left: 40%;
+    margin-top: 2rem;
+}
+#modalBtn:hover{
+    cursor: pointer;
+    color: #EAEAEA;
+    background-color: black;
+    border: 0;
+    outline: solid white;
+}
+
+#createEventModal {
+    position: absolute;
+    margin: 10%;
+    padding: 1rem;
+    border: solid rgb(128, 120, 120);
+    width: 45%;
+    height: 25%;
+    background-color: #000000;
+    display: none;
+}
+
+.newEvent{
+    margin-top: 2%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 1rem;
+    overflow: scroll;
+    margin-bottom: 2%;
+}
+
+.headingOfNewEvent{
+    color: #9A9A9A;
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: 0.08125rem;
+    text-transform: uppercase;
+}
+
+#eventBtn {
+    width: 20%;
+    height: 1.8rem;
+    margin-left: 40%;
+    margin-top: 2rem;
+}
+
+#eventBtn:hover{
+    cursor: pointer;
+    color: #EAEAEA;
+    background-color: black;
+    border: 0;
+    outline: solid white;
+}
+
+#menuBarIcon {
     display: none;
 }
 
 @media screen and (min-width:1200px) {
-    #leftBar{
+    #leftBar {
         display: block;
     }
 }
 
 /* Media Query for width: 1199px */
 @media screen and (max-width: 1199px) {
-    #menuBarIcon{
+    #menuBarIcon {
         position: absolute;
         display: block;
         left: 1rem;
@@ -373,7 +457,7 @@ main {
         z-index: 999;
     }
 
-    #leftBar{
+    #leftBar {
         position: absolute;
         padding-top: 1rem;
         width: 100%;
@@ -384,18 +468,22 @@ main {
         padding-left: 20%;
     }
 
-    #logo{
+    #logo {
         margin-left: 20%;
         margin-bottom: 2rem;
     }
-    #options{
+
+    #options {
         width: 80%;
         margin-bottom: 15%;
     }
-    #list1 div,#list2 div{
+
+    #list1 div,
+    #list2 div {
         width: 100%;
     }
-    #profile{
+
+    #profile {
         position: relative;
         width: 80%;
         left: 0;
@@ -405,29 +493,32 @@ main {
         margin-bottom: 0;
     }
 
-    #svgImg svg{
+    #svgImg svg {
         left: 95%;
         top: 35%;
     }
-    main{
+
+    main {
         margin-top: 4rem;
     }
-    #one{
+
+    #one {
         margin-bottom: 25%;
     }
-    #recentVideos{
+
+    #recentVideos {
         width: 125%;
         height: 100%;
     }
-    #movieNight{
+
+    #movieNight {
         width: 125%;
         height: 100%;
     }
 }
 
 @media screen and (max-width: 811px) {
-    #movieNight div{
+    #movieNight div {
         width: 15rem;
     }
 }
-

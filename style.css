@@ -374,8 +374,15 @@ main {
     padding: 1rem;
     border: solid rgb(128, 120, 120);
     width: 45%;
-    height: 25%;
+    height: 30%;
     background-color: #000000;
+    display: none;
+}
+
+#warningMessage1 {
+    color: #ec4747;
+    text-align: center;
+    padding: 1rem;
     display: none;
 }
 
@@ -399,6 +406,10 @@ main {
     height: 1.8rem;
     margin-left: 40%;
     margin-top: 2rem;
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
 #modalBtn:hover {
@@ -415,9 +426,23 @@ main {
     padding: 1rem;
     border: solid rgb(128, 120, 120);
     width: 45%;
-    height: 25%;
+    height: 30%;
     background-color: #000000;
     display: none;
+}
+
+#warningMessage2 {
+    color: #ec4747;
+    text-align: center;
+    padding: 1rem;
+    display: none;
+}
+
+#eventBtn {
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
 #createEventModal svg {
@@ -548,6 +573,16 @@ main {
     #movieNight {
         width: 125%;
         height: 100%;
+    }
+
+    #createEventModal {
+        margin-top: 15%;
+        margin-left: 20%;
+    }
+
+    #createBtnModal {
+        margin-top: 15%;
+        margin-left: 20%;
     }
 }
 

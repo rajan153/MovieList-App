@@ -4,6 +4,8 @@ const movieNight = document.getElementById("movieNight");
 const recentVideos = document.getElementById("recentVideos");
 const xmarkLogo1 = document.getElementById("xmarkLogo1");
 const xmarkLogo2 = document.getElementById("xmarkLogo2");
+const warningMessage1 = document.getElementById("warningMessage1");
+const warningMessage2 = document.getElementById("warningMessage2");
 const one = document.getElementById("one");
 const form = document.querySelector("form");
 const searchBar = document.getElementById("searchBar");
@@ -347,10 +349,17 @@ createBtnModal.addEventListener(
     e.preventDefault();
     const div = document.createElement("div");
     div.classList.add("tags");
-    div.append(modalBar.value);
-    list2.append(div);
-    modalBar.value = "";
-    createBtnModal.style.display = "none";
+    if(modalBar.value !== "")
+    {
+      warningMessage1.style.display = "none";
+      div.append(modalBar.value);
+      list2.append(div);
+      modalBar.value = "";
+      createBtnModal.style.display = "none";
+    }
+    else {
+      warningMessage1.style.display = "block";
+    }
   },
   false
 );
@@ -376,11 +385,18 @@ createEventModal.addEventListener(
     div.classList.add("newEvent");
     const headingForNewDiv = document.createElement("p");
     headingForNewDiv.classList.add("headingOfNewEvent");
-    headingForNewDiv.append(eventBar.value);
-    div.append(headingForNewDiv);
-    second.append(div);
-    eventBar.value = "";
-    createEventModal.style.display = "none";
+    if(eventBar.value !== "")
+    {
+      warningMessage2.style.display = "none";
+      headingForNewDiv.append(eventBar.value);
+      div.append(headingForNewDiv);
+      second.append(div);
+      eventBar.value = "";
+      createEventModal.style.display = "none";
+    }
+    else {
+      warningMessage2.style.display = "block";
+    }
   },
   false
 );

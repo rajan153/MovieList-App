@@ -2,6 +2,8 @@
 
 const movieNight = document.getElementById("movieNight");
 const recentVideos = document.getElementById("recentVideos");
+const xmarkLogo1 = document.getElementById("xmarkLogo1");
+const xmarkLogo2 = document.getElementById("xmarkLogo2");
 const one = document.getElementById("one");
 const form = document.querySelector("form");
 const searchBar = document.getElementById("searchBar");
@@ -185,59 +187,6 @@ function highlightedBars() {
 // Call the function
 getMovies(API_URL);
 
-// Rcent Watched Moives
-
-// function recentMovie(data) {
-//   data.forEach((movie) => {
-//     const { title, poster_path, release_date } = movie;
-
-//     // Creating Div
-//     const movie1 = document.createElement("div");
-
-//     // Creating Img tag to show the images
-
-//     const img = document.createElement("img");
-
-//     // Source of images
-
-//     img.src = `${IMG_URL + poster_path}`;
-
-//     // Some CSS apply on IMG tag
-
-//     img.style.display = "relative";
-//     img.style.width = "100%";
-//     img.style.cursor = "pointer";
-
-//     // Creating h6 for title of the Movie
-
-//     const headingRecentMovies = document.createElement("h6");
-
-//     // Getting the title of Movie
-//     const titleHeading = `${title}`;
-
-//     // Css on h6
-//     headingRecentMovies.style.color = "#EAEAEA";
-//     headingRecentMovies.style.marginTop = "0.5rem";
-
-//     // Creating h6 for Relase Date of the Movie
-//     const paraOfRecentMovie = document.createElement("h6");
-
-//     // Apply Css on h6
-//     paraOfRecentMovie.style.color = "#808080";
-
-//     // Getting the relase date of Movie
-//     const releaseDate = `release Date: ${release_date}`;
-
-//     // Append the all things
-//     paraOfRecentMovie.append(releaseDate);
-//     movie1.append(img);
-//     headingRecentMovies.append(titleHeading);
-//     movie1.append(headingRecentMovies);
-//     movie1.append(paraOfRecentMovie);
-//     recentVideos.append(movie1);
-//   }, false);
-// }
-
 // Movie Night Section
 
 function showMovies(data) {
@@ -401,6 +350,7 @@ createBtnModal.addEventListener(
     div.append(modalBar.value);
     list2.append(div);
     modalBar.value = "";
+    createBtnModal.style.display = "none";
   },
   false
 );
@@ -430,6 +380,17 @@ createEventModal.addEventListener(
     div.append(headingForNewDiv);
     second.append(div);
     eventBar.value = "";
+    createEventModal.style.display = "none";
   },
   false
 );
+
+// XmarkLogo1 Functionality
+xmarkLogo1.addEventListener("click", () => {
+  createBtnModal.style.display = "none";
+},false);
+
+// XmarkLogo2 Functionality
+xmarkLogo2.addEventListener("click", () => {
+  createEventModal.style.display = "none";
+},false);

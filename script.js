@@ -2,6 +2,7 @@
 
 const movieNight = document.getElementById("movieNight");
 const recentVideos = document.getElementById("recentVideos");
+const one = document.getElementById("one");
 const form = document.querySelector("form");
 const searchBar = document.getElementById("searchBar");
 const Action = document.getElementById("Action");
@@ -22,8 +23,6 @@ const eventBar = document.getElementById("eventBar");
 const eventBtn = document.getElementById("eventBtn");
 const second = document.getElementById("second");
 
-
-
 // Assign the variable
 
 const API_KEY = `api_key=4d95d99dd0ba577ee90bf446c8971b3a`;
@@ -40,7 +39,7 @@ function getMovies(url) {
     .then((res) => res.json())
     .then((data) => {
       showMovies(data.results);
-      recentMovie(data.results);
+      // recentMovie(data.results);
     }, false);
 }
 
@@ -188,56 +187,56 @@ getMovies(API_URL);
 
 // Rcent Watched Moives
 
-function recentMovie(data) {
-  data.forEach((movie) => {
-    const { title, poster_path, release_date } = movie;
+// function recentMovie(data) {
+//   data.forEach((movie) => {
+//     const { title, poster_path, release_date } = movie;
 
-    // Creating Div
-    const movie1 = document.createElement("div");
+//     // Creating Div
+//     const movie1 = document.createElement("div");
 
-    // Creating Img tag to show the images
+//     // Creating Img tag to show the images
 
-    const img = document.createElement("img");
+//     const img = document.createElement("img");
 
-    // Source of images
+//     // Source of images
 
-    img.src = `${IMG_URL + poster_path}`;
+//     img.src = `${IMG_URL + poster_path}`;
 
-    // Some CSS apply on IMG tag
+//     // Some CSS apply on IMG tag
 
-    img.style.display = "relative";
-    img.style.width = "100%";
-    img.style.cursor = "pointer";
+//     img.style.display = "relative";
+//     img.style.width = "100%";
+//     img.style.cursor = "pointer";
 
-    // Creating h6 for title of the Movie
+//     // Creating h6 for title of the Movie
 
-    const headingRecentMovies = document.createElement("h6");
+//     const headingRecentMovies = document.createElement("h6");
 
-    // Getting the title of Movie
-    const titleHeading = `${title}`;
+//     // Getting the title of Movie
+//     const titleHeading = `${title}`;
 
-    // Css on h6
-    headingRecentMovies.style.color = "#EAEAEA";
-    headingRecentMovies.style.marginTop = "0.5rem";
+//     // Css on h6
+//     headingRecentMovies.style.color = "#EAEAEA";
+//     headingRecentMovies.style.marginTop = "0.5rem";
 
-    // Creating h6 for Relase Date of the Movie
-    const paraOfRecentMovie = document.createElement("h6");
+//     // Creating h6 for Relase Date of the Movie
+//     const paraOfRecentMovie = document.createElement("h6");
 
-    // Apply Css on h6
-    paraOfRecentMovie.style.color = "#808080";
+//     // Apply Css on h6
+//     paraOfRecentMovie.style.color = "#808080";
 
-    // Getting the relase date of Movie
-    const releaseDate = `release Date: ${release_date}`;
+//     // Getting the relase date of Movie
+//     const releaseDate = `release Date: ${release_date}`;
 
-    // Append the all things
-    paraOfRecentMovie.append(releaseDate);
-    movie1.append(img);
-    headingRecentMovies.append(titleHeading);
-    movie1.append(headingRecentMovies);
-    movie1.append(paraOfRecentMovie);
-    recentVideos.append(movie1);
-  }, false);
-}
+//     // Append the all things
+//     paraOfRecentMovie.append(releaseDate);
+//     movie1.append(img);
+//     headingRecentMovies.append(titleHeading);
+//     movie1.append(headingRecentMovies);
+//     movie1.append(paraOfRecentMovie);
+//     recentVideos.append(movie1);
+//   }, false);
+// }
 
 // Movie Night Section
 
@@ -291,9 +290,60 @@ function showMovies(data) {
     headingRecentMovies.append(titleHeading);
     paraOfMovieNight.append(releaseDate);
     movie1.append(img);
-    movieNight.append(movie1);
     movie1.append(headingRecentMovies);
     movie1.append(paraOfMovieNight);
+    movieNight.append(movie1);
+
+    // Add Event Listener
+    movie1.addEventListener(
+      "click",
+      () => {
+        one.style.display = "block";
+        const div = document.createElement("div");
+        const img = document.createElement("img");
+
+        img.src = `${
+          poster_path
+            ? IMG_URL + poster_path
+            : "https://via.placeholder.com/1080x1580"
+        }`;
+
+        //   Adding some Css
+        img.style.display = "relative";
+        img.style.width = "100%";
+        img.style.height = "100%";
+        img.style.cursor = "pointer";
+
+        //   Creating h6 tag for title
+        const headingRecentMovies = document.createElement("h6");
+
+        // Getting the title of Movie
+        const titleHeading = `${title}`;
+
+        // Adding Css
+        headingRecentMovies.style.color = "#EAEAEA";
+        headingRecentMovies.style.marginTop = "0.5rem";
+
+        //   Create h6 tag for release date
+        const paraOfMovieNight = document.createElement("h6");
+
+        //   Adding Css
+        paraOfMovieNight.style.color = "#808080";
+
+        //   Getting the relase date for Moives
+        const releaseDate = `release Date: ${release_date}`;
+
+        //   Append the all things
+        headingRecentMovies.append(titleHeading);
+        paraOfMovieNight.append(releaseDate);
+        div.append(img);
+        div.append(headingRecentMovies);
+        div.append(paraOfMovieNight);
+        console.log(div);
+        recentVideos.prepend(div);
+      },
+      false
+    );
   }, false);
 }
 
@@ -368,14 +418,18 @@ eventCreation.addEventListener(
   false
 );
 
-createEventModal.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const div = document.createElement("div");
-  div.classList.add("newEvent");
-  const headingForNewDiv = document.createElement("p");
-  headingForNewDiv.classList.add("headingOfNewEvent");
-  headingForNewDiv.append(eventBar.value);
-  div.append(headingForNewDiv);
-  second.append(div);
-  eventBar.value = "";
-},false);
+createEventModal.addEventListener(
+  "submit",
+  (e) => {
+    e.preventDefault();
+    const div = document.createElement("div");
+    div.classList.add("newEvent");
+    const headingForNewDiv = document.createElement("p");
+    headingForNewDiv.classList.add("headingOfNewEvent");
+    headingForNewDiv.append(eventBar.value);
+    div.append(headingForNewDiv);
+    second.append(div);
+    eventBar.value = "";
+  },
+  false
+);

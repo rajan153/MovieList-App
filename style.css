@@ -280,6 +280,8 @@ main {
 
 #one {
     margin-bottom: 2rem;
+    height: 28%;
+    display: none;
 }
 
 #recentVideos {
@@ -294,8 +296,8 @@ main {
 
 #recentVideos div {
     flex-shrink: 0;
-    width: 8.8rem;
-    height: 80%;
+    width: 9rem;
+    height: 70%;
 }
 
 /* Second Section starts from here */
@@ -434,6 +436,10 @@ main {
     background-color: black;
     border: 0;
     outline: solid white;
+}
+
+form {
+    width: 100%;
 }
 
 #menuBarIcon {
